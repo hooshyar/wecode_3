@@ -15,9 +15,11 @@ class MyApp extends StatelessWidget {
             children: [
               Image.network(
                   "https://constitutionnet.org/sites/default/files/kurdistan-4542293_1920.jpg"),
+                  const SizedBox(height: 50),
               Text(
-                'Hello Kurdistan',
+                'Hello Kurdistan', style: TextStyle(fontSize: 30),
               ),
+              const Text("Thanks Mr.Hooshyar , you are one of the best coachs and teachers , thanks alot ..."),
             ],
           )),
       //Assignment7: have both widgets centered, do some styling for the Hello Kurdistan Text, + have the flag curved and add some spacing around and between both widgets
