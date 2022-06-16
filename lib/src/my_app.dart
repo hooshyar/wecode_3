@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
               ),
             ],
           )),
+      //Assignment7: have both widgets centered, do some styling for the Hello Kurdistan Text, + have the flag curved and add some spacing around and between both widgets
     );
   }
 }
