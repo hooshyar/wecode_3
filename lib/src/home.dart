@@ -1,78 +1,80 @@
 import 'package:flutter/material.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   //the value of variable passed by constructor
-  const Home({Key? key, required this.text}) : super(key: key);
-
-  final String text;
+  const Home({Key? key}) : super(key: key);
 
   @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  //the url variable is changable according to which image is clicked
+  String url =
+      'https://c4.wallpaperflare.com/wallpaper/183/980/62/computer-avid-technology-simple-wallpaper-thumb.jpg';
+
+//temperory variable to hold the top image address
+  String temp = '';
+//a method which return Container method
+  Widget images(String link, double size, int index) {
+    return Container(
+      margin: const EdgeInsets.all(10.0),
+      width: size / 2,
+      height: 130,
+      child: GestureDetector(
+        onTap: () {
+          setState(() {
+            temp = url;
+            url = link;
+            _images[index] = temp;
+            link = temp;
+          });
+        },
+        child: Image.network(
+          link,
+          fit: BoxFit.cover,
+        ),
+      ),
+    );
+  }
+
+//list of image address
+  final List<String> _images = [
+    'https://wallpaperaccess.com/full/2529536.png',
+    'https://i.pinimg.com/736x/9d/2b/04/9d2b04a381fe509b5f19f26dba6b1d1c.jpg',
+    'https://i.pinimg.com/236x/9e/fb/dc/9efbdc2665dd0d0c9ac12a276b308784.jpg',
+    // 'https://c4.wallpaperflare.com/wallpaper/183/980/62/computer-avid-technology-simple-wallpaper-thumb.jpg',
+  ];
+  @override
   Widget build(BuildContext context) {
+    //take the device width
+    final orientation = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
         title: const Text('StartUp'),
         centerTitle: true,
       ),
-      body: Center(
-        child: Column(
-          //main axix alignment to make it center
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const RoundedImage(),
-            //some vertical space with sizedbox widget
-            const SizedBox(height: 30.0),
-            ShadowedText(text: text),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class RoundedImage extends StatelessWidget {
-  const RoundedImage({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.all(10.0),
-      //clipRRect used to round the child widget
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(20.0),
-        child: Image.network(
-          'https://wallpapercave.com/wp/wp2668088.jpg',
-        ),
-      ),
-    );
-  }
-}
-
-class ShadowedText extends StatelessWidget {
-  const ShadowedText({
-    Key? key,
-    required this.text,
-  }) : super(key: key);
-
-  final String text;
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      "Hello $text",
-      style: const TextStyle(
-        shadows: [
-          Shadow(
-            offset: Offset(0, 7.0),
-            blurRadius: 8.0,
-            color: Color.fromARGB(220, 189, 189, 189),
+      body: Column(
+        //main axix alignment to make it center
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          //this is top image
+          Container(
+            margin: const EdgeInsets.all(10.0),
+            child: Image.network(url),
+          ),
+          //used sized box with listView.Builder() because column and listview not work together
+          SizedBox(
+            height: 130,
+            child: ListView.builder(
+              shrinkWrap: true,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (ctx, int index) =>
+                  images(_images[index], orientation, index),
+              itemCount: _images.length,
+            ),
           ),
         ],
-        letterSpacing: 10,
-        fontSize: 22.0,
-        fontWeight: FontWeight.bold,
-        fontStyle: FontStyle.italic,
       ),
     );
   }
