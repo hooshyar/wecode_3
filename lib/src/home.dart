@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
-  //the value of variable passed by constructor
   const Home({Key? key}) : super(key: key);
 
   @override
@@ -45,6 +44,7 @@ class _HomeState extends State<Home> {
     'https://i.pinimg.com/236x/9e/fb/dc/9efbdc2665dd0d0c9ac12a276b308784.jpg',
     // 'https://c4.wallpaperflare.com/wallpaper/183/980/62/computer-avid-technology-simple-wallpaper-thumb.jpg',
   ];
+
   @override
   Widget build(BuildContext context) {
     //take the device width
