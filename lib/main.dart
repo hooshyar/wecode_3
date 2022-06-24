@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wecode_3/src/home.dart';
+import 'package:wecode_3/src/person_detail.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +18,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const Home(),
+      //home: const Home(),
+      initialRoute: Home.routeName,
+      routes: {
+        Home.routeName: (context) => const Home(),
+        PersonDetail.routeName: (context) => const PersonDetail(),
+      },
     );
   }
 }
