@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wecode_3/models/data_modal.dart';
+import 'package:wecode_3/src/main_drawer.dart';
 import 'package:wecode_3/src/person_detail.dart';
 import '../models/mock_data.dart';
 
@@ -9,6 +10,7 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const MainDrawer(),
       appBar: AppBar(
         title: const Text('List of Data'),
         centerTitle: true,
