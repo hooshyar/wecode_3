@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wecode_3/models/data_modal.dart';
 import 'package:wecode_3/models/mock_data.dart';
 
 class PersonDetail extends StatelessWidget {
@@ -6,13 +7,16 @@ class PersonDetail extends StatelessWidget {
   static const routeName = '/person-detail';
   @override
   Widget build(BuildContext context) {
-    final arguments =
-        ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
-    final id = arguments['id'];
-    final index = arguments['index'];
+    //get the data from arguments of navigator from home.dart file
+    final arguments = ModalRoute.of(context)!.settings.arguments as PersonModal;
+    //final arguments = ModalRoute.of(context)!.settings.arguments as Map<String,dynamic>;
+    //get the sender id and the index
+    // final id = arguments['id'];
+    // final index = arguments['index'];
+
     return Scaffold(
       appBar: AppBar(
-        title: Text('$id'),
+        title: Text(arguments.id),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -24,10 +28,10 @@ class PersonDetail extends StatelessWidget {
               margin: const EdgeInsets.all(10),
               height: 200,
               width: 200,
-              child: Image.network(data[index]['avatar'].toString()),
+              child: Image.network(arguments.avatar),
             ),
             Text(
-              data[index]['position'].toString(),
+              arguments.position,
               style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 14,
@@ -38,9 +42,9 @@ class PersonDetail extends StatelessWidget {
               color: Colors.indigo,
               thickness: 2,
             ),
-            Text('Gender: ${data[index]['gender']}'),
-            Text('Company: ${data[index]['company']}'),
-            Text('Department: ${data[index]['department']}'),
+            Text('Gender: ${arguments.gender}'),
+            Text('Company: ${arguments.company}'),
+            Text('Department: ${arguments.department}'),
           ],
         ),
       ),
