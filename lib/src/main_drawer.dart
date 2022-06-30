@@ -21,7 +21,9 @@ class MainDrawer extends StatelessWidget {
                       child: Icon(Icons.person),
                     ),
                     SizedBox(height: 8),
-                    Text('User'),
+                    Text('Mustafa Dilshad'),
+
+                    ///we can add more widgets
                   ],
                 ),
               ),
